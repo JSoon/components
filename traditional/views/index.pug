@@ -1,0 +1,15 @@
+extends layout
+
+block content
+    h1= title
+
+    //- toast
+    link(rel="stylesheet", href="/components/toast/toast.css")
+    script(src="/components/toast/toast.pug.js")
+    script(src="/components/toast/toast.js")
+    h2 toast
+    button#J_ComToast toast
+    script.
+        $('#J_ComToast').click(function() {
+            com_toast('I\'m a toast', 2000);
+        });
