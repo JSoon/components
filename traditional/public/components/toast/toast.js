@@ -13,11 +13,11 @@
         // AMD. Register as an anonymous module.
         // Defines a module "amdWebGlobal" that depends another module called "b".
         // define(['b'], function (b) {
-        define(function (b) {
+        define(function () {
             // Also create a global in case some scripts
             // that are loaded still are looking for
             // a global even when an AMD loader is in use.
-            return (root[globalName] = factory(b));
+            return (root[globalName] = factory());
         });
     } else {
         // Browser globals
@@ -34,7 +34,7 @@
     function toast(content, duration) {
         // 加载前端模板
         // toastTemplate为预编译后的模板函数，若没有，则采用AMD的方式进行装载（需要使用AMD加载器或者使用webpack）
-        var tmpl = toastTemplate || require('./toast.pug');
+        var tmpl = typeof toastTemplate !== 'undefined' ? toastTemplate : require('./toast.pug');
         // 编译为html字符串
         var html = $(tmpl({
             content: content

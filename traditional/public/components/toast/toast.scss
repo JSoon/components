@@ -1,6 +1,7 @@
 //////////////////////////////////////////////////////////////////////
 // 简单信息提示
 //////////////////////////////////////////////////////////////////////
+$base-color: #4caf50;
 .toast {
     z-index: 9999;
     position: fixed;
@@ -31,5 +32,5 @@
     padding: .6em 1.2em;
     border-radius: 3px;
     color: #fff;
-    background: #e40077;
+    background: $base-color;
 }
