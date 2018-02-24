@@ -1,5 +1,4 @@
 // 异步加载a模块
-require('es6-promise').polyfill();
 require.ensure(['./a'], function (require) {
     var a = require('./a');
 
@@ -12,5 +11,6 @@ require.ensure(['./a'], function (require) {
 }, 'async');
 
 const a = () => {
+    alert('aaaaa');
     alert('aaaaa');
 };

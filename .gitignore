@@ -33,4 +33,4 @@ npm-debug.log
 .vscode
 
 #public
-public/javascripts
+*/**/public/javascripts

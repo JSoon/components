@@ -1,8 +1,14 @@
 const webpack = require('webpack');
 const path = require('path');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     entry: {
+        // 'vendor': [
+        //     'promise-polyfill'
+        //     // 'babel-polyfill'
+        // ],
         'index': './app/index/index'
     },
     output: {
@@ -39,12 +45,14 @@ module.exports = {
         rules: [{
                 test: /\.js$/,
                 exclude: /(node_modules|bower_components)/,
-                use: {
+                use: [{
                     loader: 'babel-loader',
                     options: {
                         presets: ['es2015']
                     }
-                }
+                }, {
+                    loader: 'es3ify-loader'
+                }]
             },
             {
                 test: /\.pug$/,
@@ -54,6 +62,15 @@ module.exports = {
     },
     // 插件
     plugins: [
+        // new webpack.optimize.CommonsChunkPlugin({
+        //     name: "vendor",
+        //     // filename: "vendor.js"
+        //     // (Give the chunk a different name)
+
+        //     minChunks: Infinity,
+        //     // (with more entries, this ensures that no other module
+        //     //  goes into the vendor chunk)
+        // }),
         /**
          * To extract the webpack bootstrap logic into a separate file, use the CommonsChunkPlugin on a name which is not defined as entry.
          * Commonly the name manifest is used. See the caching guide for details.
@@ -68,6 +85,20 @@ module.exports = {
             hashFunction: 'sha256',
             hashDigest: 'hex',
             hashDigestLength: 20
-        })
+        }),
+        // new webpack.ProvidePlugin({
+        //     Promise: 'promise-polyfill'
+        // }),
+        // new UglifyJsPlugin({
+        //     uglifyOptions: {
+        //         ie8: true,
+        //     },
+        // })
+        // new HtmlWebpackPlugin({
+        //     template: 'pug!views/index.pug',
+        //     filename: 'index.pug',
+        //     minify: false
+        //     // inject: 'body'
+        // })
     ]
 };
