@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "build": "webpack --config webpack.config.js --colors --progress"
+    "build": "webpack --config webpack.config.js --colors --progress --watch"
   },
   "dependencies": {
     "body-parser": "~1.17.1",
@@ -23,6 +23,7 @@
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "es3ify-loader": "^0.2.0",
+    "file-system": "^2.2.2",
     "html-webpack-plugin": "^2.30.1",
     "jquery": "^1.12.4",
     "promise-polyfill": "^7.1.0",

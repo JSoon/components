@@ -3,6 +3,10 @@ const path = require('path');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+// 临时chunks数组，用于同输出前后chunks作比对，找出变更的js模块，初始为空
+const namedChunksTemp = [];
+const HelloWorldPlugin = require('./HelloWorldPlugin');
+
 module.exports = {
     entry: {
         // 'vendor': [
@@ -28,6 +32,23 @@ module.exports = {
         // require.ensure(dependencies: String[], callback: function(require), chunkName: String)
         // 若未指定第三个参数，则默认的chunkName为模 块id（自动生成）
         chunkFilename: 'javascripts/[name]-[chunkhash].chunk.js'
+    },
+    // 观察模式
+    // 监测代码，并在代码改变的时候进行重新编译
+    watch: true,
+    watchOptions: {
+        // 当代码首次被改变后增加一个时间延迟
+        // 如果在这段延迟时间内，又有其他代码发生了改变，
+        // 则其他的改变也将在这段延迟时间后，一并进行编译
+        aggregateTimeout: 500,
+
+        // 不进行监测的文件
+        // 监测大量的文件将占用CPU或许多内存空间，例如node_modules
+        ignored: /node_modules/,
+
+        // 每隔一段时间，自动检查代码的改变，例如1000表示每秒进行一次检查
+        // 在观察模式不起作用的时候，可以尝试打开这个配置项
+        poll: 1000
     },
     /**
      * 解析
@@ -100,5 +121,16 @@ module.exports = {
         //     minify: false
         //     // inject: 'body'
         // })
-    ]
+        new HelloWorldPlugin({
+            namedChunksTemp: namedChunksTemp
+        })
+    ],
+    // stats: { //object
+    //     // assets: true,
+    //     // colors: true,
+    //     // errors: true,
+    //     // errorDetails: true,
+    //     hash: true,
+    //     // ...
+    // }
 };
