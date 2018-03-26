@@ -76,21 +76,21 @@ $base-color: #4caf50;
     .dialog-footer {
         padding: 10px 0;
         text-align: center;
-        button {
-            display: inline-block;
-            width: 100px;
-            height: 40px;
-            margin: 0;
-            padding: 0;
-            border: none;
-            font-size: 14px;
-            line-height: 40px;
-            text-align: center;
-            cursor: pointer;
-            &:hover,
-            &:focus {
-                color: lighten(#000, 50%);
-            }
-        }
+        // button {
+        //     display: inline-block;
+        //     width: 100px;
+        //     height: 40px;
+        //     margin: 0;
+        //     padding: 0;
+        //     border: none;
+        //     font-size: 14px;
+        //     line-height: 40px;
+        //     text-align: center;
+        //     cursor: pointer;
+        //     &:hover,
+        //     &:focus {
+        //         color: lighten(#000, 50%);
+        //     }
+        // }
     }
 }

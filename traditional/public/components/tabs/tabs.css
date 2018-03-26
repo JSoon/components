@@ -1,0 +1,26 @@
+@charset "UTF-8";
+/* 
+==========================================================================
+选项卡导航
+========================================================================== 
+*/
+.tabs-nav:after {
+  visibility: hidden;
+  display: block;
+  content: "";
+  clear: both;
+  height: 0; }
+
+.tabs-nav > * {
+  float: left;
+  padding: 10px; }
+
+.tabs-nav > a:hover, .tabs-nav > a:focus, .tabs-nav > a.active {
+  color: #fff;
+  background: #4caf50; }
+
+.tabs-content > div {
+  display: none;
+  padding: 10px; }
+
+/*# sourceMappingURL=tabs.css.map */

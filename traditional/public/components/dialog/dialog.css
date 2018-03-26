@@ -57,18 +57,5 @@
   .dialog-overlay .dialog-footer {
     padding: 10px 0;
     text-align: center; }
-    .dialog-overlay .dialog-footer button {
-      display: inline-block;
-      width: 100px;
-      height: 40px;
-      margin: 0;
-      padding: 0;
-      border: none;
-      font-size: 14px;
-      line-height: 40px;
-      text-align: center;
-      cursor: pointer; }
-      .dialog-overlay .dialog-footer button:hover, .dialog-overlay .dialog-footer button:focus {
-        color: gray; }
 
 /*# sourceMappingURL=dialog.css.map */

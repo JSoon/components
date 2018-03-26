@@ -1,0 +1,35 @@
+/* 
+==========================================================================
+选项卡导航
+========================================================================== 
+*/
+
+$base-color: #4caf50;
+.tabs-nav {
+    &:after {
+        visibility: hidden;
+        display: block;
+        content: "";
+        clear: both;
+        height: 0;
+    }
+    >* {
+        float: left;
+        padding: 10px;
+    }
+    >a {
+        &:hover,
+        &:focus,
+        &.active {
+            color: #fff;
+            background: $base-color;
+        }
+    }
+}
+
+.tabs-content {
+    >div {
+        display: none;
+        padding: 10px;
+    }
+}

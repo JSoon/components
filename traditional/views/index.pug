@@ -2,8 +2,10 @@ extends layout
 
 block content
     h1= title
+    //- script(src="/javascripts/index-a07e9e7b1e1af02df8b1.js")
+    //- script(src="/javascripts/indexa-c836f288bd16f3452393.js")
 
-    //- toast
+    //- 对话框
     link(rel="stylesheet", href="/components/dialog/dialog.css")
     link(rel="stylesheet", href="/components/dialog/toast.css")
     script(src="/components/dialog/dialog.pug.js")
@@ -16,8 +18,6 @@ block content
     button#J_ComDialog dialog
     h2 confirm
     button#J_ComConfirm confirm
-    //- script(src="/javascripts/index-a07e9e7b1e1af02df8b1.js")
-    //- script(src="/javascripts/indexa-c836f288bd16f3452393.js")
     script.
         $('#J_ComToast').click(function() {
             com_dialog().toast('我是一条简单信息提示', 2000);
@@ -42,4 +42,25 @@ block content
                     console.log(dialog);
                 }
             });
+        });
+
+    //- 选项卡导航
+    link(rel="stylesheet", href="/components/tabs/tabs.css")    
+    script(src="/components/tabs/tabs.js")
+    h2 tabs
+    section
+        nav#J_ComTabs.tabs-nav
+            a(
+                href = '#tab1'
+                class = 'active'
+            ) tab1
+            a(href = '#tab2') tab2
+            a(href = '#tab3') tab3
+        .tabs-content
+            #tab1 tab1
+            #tab2 tab2 
+            #tab3 tab3
+    script.
+        com_tabs({
+            id: 'J_ComTabs'
         });
