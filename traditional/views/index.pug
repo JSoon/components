@@ -64,3 +64,15 @@ block content
         com_tabs({
             id: 'J_ComTabs'
         });
+
+    //- 分页器
+    link(rel="stylesheet", href="/components/pagination/pagination.css")    
+    script(src="/components/pagination/pagination.js")
+    h2 pagination
+    #J_ComPagination.pagination
+    script.
+        com_pagination({
+            id: 'J_ComPagination',
+            total: 20,
+            round: 1
+        });

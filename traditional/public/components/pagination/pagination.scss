@@ -1,0 +1,72 @@
+/* 
+==========================================================================
+分页器
+========================================================================== 
+*/
+
+$base-color: #4caf50;
+.pagination {
+    margin: 15px 0;
+    ul {
+        display: inline-block;
+        margin: 0 -5px;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        &:after {
+            visibility: hidden;
+            display: block;
+            content: "";
+            clear: both;
+            height: 0;
+        }
+    }
+    li {
+        float: left;
+        display: block;
+        height: 40px;
+        margin: 0 5px;
+        line-height: 40px;
+        text-align: center;
+        font-size: 16px;
+    }
+    a {
+        // 页码
+        display: block;
+        color: #666;
+        padding: 0 1em;
+        &:hover,
+        &:focus {
+            color: #fff;
+            background-color: $base-color !important;
+        }
+        &.next,
+        &.prev {
+            width: 40px;
+            padding: 0; // text-indent: -9999em;
+        } // &.next {
+        //     background: url(../../images/pager-next-normal.png) no-repeat transparent center center;
+        //     &:hover,
+        //     &:focus {
+        //         background-image: url(../../images/pager-next-active.png);
+        //     }
+        // }
+        // &.prev {
+        //     background: url(../../images/pager-prev-normal.png) no-repeat transparent center center;
+        //     &:hover,
+        //     &:focus {
+        //         background-image: url(../../images/pager-prev-active.png);
+        //     }
+        // }
+    }
+    span {
+        display: block;
+        color: #bbb;
+        padding: 0 1em;
+        &.current {
+            display: block;
+            color: #fff;
+            background-color: $base-color;
+        }
+    }
+}
