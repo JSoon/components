@@ -1,0 +1,96 @@
+/* 
+==========================================================================
+对话框弹窗
+========================================================================== 
+*/
+
+$base-color: #4caf50;
+.dialog-overlay {
+    z-index: 9999;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    background: rgba(0, 0, 0, .3); // filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#7F000000, endColorstr=#7F000000);
+    box-sizing: border-box;
+    -webkit-transition: opacity .2s;
+    transition: opacity .2s;
+    * {
+        box-sizing: border-box;
+    }
+    &.overflow {
+        // 对话框高度大于文档可视区域高度适配
+        overflow: auto;
+        .dialog {
+            position: relative;
+            margin: 0 auto;
+        }
+    }
+    &.removing {
+        opacity: 0;
+    }
+    .dialog {
+        position: absolute; // overflow: auto;
+        background: #fff;
+        &.normal {
+            // 普通对话框专有样式
+        }
+        &.confirm {
+            // 确认对话框专有样式
+        }
+    }
+    .dialog-header {
+        position: relative;
+        height: 40px;
+        padding-left: 1em;
+        line-height: 40px;
+        background: $base-color;
+        .dialog-title {
+            color: #fff;
+            font-size: 14px;
+        }
+        .dialog-close {
+            position: absolute;
+            top: 0;
+            right: 0;
+            display: block;
+            width: 40px;
+            height: 40px;
+            color: #fff;
+            font-size: 12px;
+            font-style: normal;
+            line-height: 40px;
+            text-align: center;
+            cursor: pointer;
+            &:hover,
+            &:focus {
+                color: darken(#fff, 10%);
+            }
+        }
+    }
+    .dialog-body {
+        overflow: auto;
+        padding: 20px;
+    }
+    .dialog-footer {
+        padding: 10px 0;
+        text-align: center;
+        button {
+            display: inline-block;
+            width: 100px;
+            height: 40px;
+            margin: 0;
+            padding: 0;
+            border: none;
+            font-size: 14px;
+            line-height: 40px;
+            text-align: center;
+            cursor: pointer;
+            &:hover,
+            &:focus {
+                color: lighten(#000, 50%);
+            }
+        }
+    }
+}

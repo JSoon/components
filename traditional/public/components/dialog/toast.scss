@@ -1,0 +1,41 @@
+/* 
+==========================================================================
+简单信息提示
+========================================================================== 
+*/
+
+$base-color: #4caf50;
+.toast-overlay {
+    z-index: 9999;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    text-align: center;
+    -webkit-transition: opacity .2s;
+    transition: opacity .2s;
+    &:before {
+        // 垂直居中
+        content: "";
+        display: inline-block;
+        vertical-align: middle;
+        width: 0;
+        /* adjust for white space between pseudo element and next sibling */
+        margin-right: -.25em;
+        /* stretch line height */
+        height: 100%;
+    }
+    &.removing {
+        opacity: 0;
+    }
+    .toast {
+        display: inline-block;
+        vertical-align: middle;
+        white-space: normal;
+        padding: .6em 1.2em;
+        border-radius: 3px;
+        color: #fff;
+        background: $base-color;
+    }
+}

@@ -1,0 +1,37 @@
+@charset "UTF-8";
+/* 
+==========================================================================
+简单信息提示
+========================================================================== 
+*/
+.toast-overlay {
+  z-index: 9999;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  text-align: center;
+  -webkit-transition: opacity .2s;
+  transition: opacity .2s; }
+  .toast-overlay:before {
+    content: "";
+    display: inline-block;
+    vertical-align: middle;
+    width: 0;
+    /* adjust for white space between pseudo element and next sibling */
+    margin-right: -.25em;
+    /* stretch line height */
+    height: 100%; }
+  .toast-overlay.removing {
+    opacity: 0; }
+  .toast-overlay .toast {
+    display: inline-block;
+    vertical-align: middle;
+    white-space: normal;
+    padding: .6em 1.2em;
+    border-radius: 3px;
+    color: #fff;
+    background: #4caf50; }
+
+/*# sourceMappingURL=toast.css.map */

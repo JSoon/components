@@ -4,14 +4,42 @@ block content
     h1= title
 
     //- toast
-    link(rel="stylesheet", href="/components/toast/toast.css")
-    //- script(src="/components/toast/toast.pug.js")
-    //- script(src="/components/toast/toast.js")
+    link(rel="stylesheet", href="/components/dialog/dialog.css")
+    link(rel="stylesheet", href="/components/dialog/toast.css")
+    script(src="/components/dialog/dialog.pug.js")
+    script(src="/components/dialog/confirm.pug.js")
+    script(src="/components/dialog/toast.pug.js")
+    script(src="/components/dialog/dialog.js")
     h2 toast
     button#J_ComToast toast
-    script(src="/javascripts/index-a07e9e7b1e1af02df8b1.js")
+    h2 dialog
+    button#J_ComDialog dialog
+    h2 confirm
+    button#J_ComConfirm confirm
+    //- script(src="/javascripts/index-a07e9e7b1e1af02df8b1.js")
     //- script(src="/javascripts/indexa-c836f288bd16f3452393.js")
-    //- script.
-    //-     $('#J_ComToast').click(function() {
-    //-         com_toast('I\'m a toast!', 2000);
-    //-     });
+    script.
+        $('#J_ComToast').click(function() {
+            com_dialog().toast('我是一条简单信息提示', 2000);
+        });
+        $('#J_ComDialog').click(function() {
+            com_dialog().normal({
+                //- title: '对话框',
+                //- width: 800,
+                //- height: 600,
+                //- overlay: false
+                body: '<p>我是一个普通对话框</p>',
+            });
+        });
+        $('#J_ComConfirm').click(function() {
+            com_dialog().confirm({
+                //- title: '对话框',
+                //- width: 800,
+                //- height: 600,
+                //- overlay: false
+                body: '<p>我是一个确认对话框</p>',
+                onConfirm: function(dialog) {
+                    console.log(dialog);
+                }
+            });
+        });

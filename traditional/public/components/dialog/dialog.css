@@ -1,0 +1,74 @@
+@charset "UTF-8";
+/* 
+==========================================================================
+对话框弹窗
+========================================================================== 
+*/
+.dialog-overlay {
+  z-index: 9999;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background: rgba(0, 0, 0, 0.3);
+  box-sizing: border-box;
+  -webkit-transition: opacity .2s;
+  transition: opacity .2s; }
+  .dialog-overlay * {
+    box-sizing: border-box; }
+  .dialog-overlay.overflow {
+    overflow: auto; }
+    .dialog-overlay.overflow .dialog {
+      position: relative;
+      margin: 0 auto; }
+  .dialog-overlay.removing {
+    opacity: 0; }
+  .dialog-overlay .dialog {
+    position: absolute;
+    background: #fff; }
+  .dialog-overlay .dialog-header {
+    position: relative;
+    height: 40px;
+    padding-left: 1em;
+    line-height: 40px;
+    background: #4caf50; }
+    .dialog-overlay .dialog-header .dialog-title {
+      color: #fff;
+      font-size: 14px; }
+    .dialog-overlay .dialog-header .dialog-close {
+      position: absolute;
+      top: 0;
+      right: 0;
+      display: block;
+      width: 40px;
+      height: 40px;
+      color: #fff;
+      font-size: 12px;
+      font-style: normal;
+      line-height: 40px;
+      text-align: center;
+      cursor: pointer; }
+      .dialog-overlay .dialog-header .dialog-close:hover, .dialog-overlay .dialog-header .dialog-close:focus {
+        color: #e6e6e6; }
+  .dialog-overlay .dialog-body {
+    overflow: auto;
+    padding: 20px; }
+  .dialog-overlay .dialog-footer {
+    padding: 10px 0;
+    text-align: center; }
+    .dialog-overlay .dialog-footer button {
+      display: inline-block;
+      width: 100px;
+      height: 40px;
+      margin: 0;
+      padding: 0;
+      border: none;
+      font-size: 14px;
+      line-height: 40px;
+      text-align: center;
+      cursor: pointer; }
+      .dialog-overlay .dialog-footer button:hover, .dialog-overlay .dialog-footer button:focus {
+        color: gray; }
+
+/*# sourceMappingURL=dialog.css.map */
