@@ -36,27 +36,31 @@
     /**
      * 分页器
      * 
-     * @param {object|json} options 
-     * @param {string}      options.id          分页器容器id
-     * @param {number}      options.total       总页数
-     * @param {number}      options.current     当前页码
-     * @param {number}      options.round       页码半径，即当前页码前/后能显示的最大页码数量
-     * @param {boolean}     options.noPage      是否生成页码，默认为true；若为false，则只生成上一页和下一页，没有页码
-     * @param {function}    options.onInit      页码初始化回调函数
-     * @param {function}    options.onPageClick 页码点击回调函数
+     * @param {object|json} opts 
+     * @param {string}      opts.id          分页器容器id
+     * @param {number}      opts.total       总页数
+     * @param {number}      opts.current     当前页码
+     * @param {number}      opts.round       页码半径，即当前页码前/后能显示的最大页码数量
+     * @param {boolean}     opts.noPage      是否生成页码，默认为true；若为false，则只生成上一页和下一页，没有页码
+     * @param {function}    opts.onInit      页码初始化回调函数
+     * @param {function}    opts.onPageClick 页码点击回调函数
      */
     /**
-     * options.onPageClick
+     * opts.onPageClick
      * @param {number} pageNumber   当前点击的页码
      * @param {object} event        jQuery event
      */
-    function pagination(options) {
+    function pagination(opts) {
         var that = {};
-        var pager = document.getElementById(options.id); // 分页器容器id
-        var noPage = options.noPage || false; // 是否生成页码
-        var total = options.total > 0 ? options.total : 1; // 总页数
-        var current = options.current || 1; // 当前页码
-        var pageRound = options.round || 2; // 页码半径
+        var pager = document.getElementById(opts.id); // 分页器容器id
+        var noPage = opts.noPage || false; // 是否生成页码
+        var total = opts.total > 0 ? opts.total : 1; // 总页数
+        var current = opts.current || 1; // 当前页码
+        var pageRound = opts.round; // 页码半径
+        // 若opts.round未配置，则默认页面半径为2
+        if (pageRound === undefined) {
+            pageRound = 2;
+        }
         var pageArray = []; // 分页器数组，长度不超过9（即最大为1...3 4 5 6 7...9，其中省略号代替2 8的位置）
 
         // 页码数据结构体（对于一个页码，只存在下列其一）
@@ -95,7 +99,7 @@
                 renderPagination(pageArray);
             }
             // 页码初始化后触发的回调函数
-            typeof options.onInit === 'function' && options.onInit();
+            typeof opts.onInit === 'function' && opts.onInit();
         }
 
         // 页码点击事件
@@ -117,7 +121,7 @@
             }
 
             // 页码点击时触发的回调函数
-            typeof options.onPageClick === 'function' && options.onPageClick(curNumber, e);
+            typeof opts.onPageClick === 'function' && opts.onPageClick(curNumber, e);
 
             renderPagination(pageArray);
         });
@@ -185,7 +189,7 @@
                 }
             }
             // 若当前页右半径范围等于页码半径且不等于1，则生成后页码半径数量的页码
-            else if (roundRight === pageRound && roundRight !== 1) {
+            else if (roundRight === pageRound && roundRight > 1) {
                 pagePart2.push({
                     pageNo: current + 1,
                     active: false
@@ -235,7 +239,7 @@
                 }
             }
             // 若当前页左半径范围等于页码半径且不等于1，则生成前页码半径数量的页码
-            else if (roundRight === pageRound && roundRight !== 1) {
+            else if (roundLeft === pageRound && roundLeft > 1) {
                 pagePart1.push({
                     pageNo: current - 1,
                     active: false
@@ -261,7 +265,7 @@
             for (var i = 0; i < pageArray.length; i += 1) {
                 // 生成上一页按钮
                 if (pageArray[i].prev) {
-                    html += '<li data-pn="' + pageArray[i].prevPageNo + '"><a class="prev" href="#">' + (options.prevText || '&lt;') + '</a></li>';
+                    html += '<li data-pn="' + pageArray[i].prevPageNo + '"><a class="prev" href="#">' + (opts.prevText || '&lt;') + '</a></li>';
                 }
                 // 生成页码
                 if (typeof pageArray[i].pageNo === 'number') {
@@ -277,7 +281,7 @@
                 }
                 // 生成下一页按钮
                 if (pageArray[i].next) {
-                    html += '<li data-pn="' + pageArray[i].nextPageNo + '"><a class="next" href="#">' + (options.nextText || '&gt;') + '</a></li>';
+                    html += '<li data-pn="' + pageArray[i].nextPageNo + '"><a class="next" href="#">' + (opts.nextText || '&gt;') + '</a></li>';
                 }
             }
             pager.innerHTML = '<ul>' + html + '</ul>';
