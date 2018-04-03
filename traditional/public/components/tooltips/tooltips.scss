@@ -1,0 +1,15 @@
+/* 
+==========================================================================
+小提示
+========================================================================== 
+*/
+
+$base-color: #4caf50;
+.tooltips {
+    position: absolute;
+    display: none;
+    max-width: 20em;
+    padding: 2px;
+    background-color: $base-color;
+    color: #fff;
+}

@@ -73,6 +73,18 @@ block content
     script.
         com_pagination({
             id: 'J_ComPagination',
-            total: 20,
-            round: 0
+            total: 5
+        });
+
+    //- tooltips
+    link(rel="stylesheet", href="/components/tooltips/tooltips.css")    
+    script(src="/components/tooltips/tooltips.js")
+    h2 tooltips
+    #J_Tooltips(
+        title = '么么哒'
+        data-placement = 'bottom'
+    ) 呵呵哒
+    script.
+        com_tooltips({
+            selector: '#J_Tooltips'
         });

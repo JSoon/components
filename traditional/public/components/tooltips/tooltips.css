@@ -1,0 +1,15 @@
+@charset "UTF-8";
+/* 
+==========================================================================
+小提示
+========================================================================== 
+*/
+.tooltips {
+  position: absolute;
+  display: none;
+  max-width: 20em;
+  padding: 2px;
+  background-color: #4caf50;
+  color: #fff; }
+
+/*# sourceMappingURL=tooltips.css.map */
