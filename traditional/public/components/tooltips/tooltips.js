@@ -44,8 +44,8 @@
         $ele.each(function (index, element) {
             // 计算元素相对于body边界的位置
             var boundary = getElementBoundary(element);
-            console.log(element);
-            console.log(boundary);
+            // console.log(element);
+            // console.log(boundary);
             var content = $ele.attr('title') || opts.content || '';
             var placement = $ele.attr('data-placement') || opts.placement || 'top';
             var className = opts.className || '';
@@ -72,7 +72,7 @@
                     $tips.show();
                 }
             });
-            $(element).on('mouseleave', function (e) {
+            $(element).on('mouseleave', function () {
                 $tips.remove();
             });
         });
@@ -100,6 +100,7 @@
         var aHeight = $arrow.outerHeight(); // 小提示箭头高度
         var left; // 小提示出现的水平位置
         var top; // 小提示出现的垂直位置
+        var docRoot = document.documentElement || document.body.parentNode; // 文档根节点，对于html文档来说，则是<html>元素        
         var scrollX = (window.pageXOffset !== undefined) ? window.pageXOffset : docRoot.scrollLeft; // 文档水平方向滚动距离
         var scrollY = (window.pageYOffset !== undefined) ? window.pageYOffset : docRoot.scrollTop; // 文档垂直方向滚动距离
 
