@@ -78,13 +78,16 @@ block content
 
     //- tooltips
     link(rel="stylesheet", href="/components/tooltips/tooltips.css")    
+    script(src="/components/tooltips/tooltips.pug.js")
     script(src="/components/tooltips/tooltips.js")
     h2 tooltips
     #J_Tooltips(
-        title = '么么哒'
-        data-placement = 'bottom'
+        title = '么么哒么么哒么么哒么么哒么么哒么么哒么么哒么么哒么么哒么么哒么么哒么么哒'
+        data-placement = 'top'
+        style = 'height: 200px; background: #eee;'
     ) 呵呵哒
     script.
         com_tooltips({
-            selector: '#J_Tooltips'
+            selector: '#J_Tooltips',
+            //- follow: true
         });

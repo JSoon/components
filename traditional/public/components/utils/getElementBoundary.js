@@ -39,6 +39,8 @@
         var docWidth = docRoot.clientWidth; // html文档可视区域宽度
         var docHeight = docRoot.clientHeight; // html文档可视区域高度
         var body = document.body;
+        // https://developer.mozilla.org/en-US/docs/Web/API/Element/currentStyle
+        // https://developer.mozilla.org/en-US/docs/Web/API/Window/getComputedStyle
         var bodyStyle = body.currentStyle || window.getComputedStyle(body);
         var styleUnitReg = /px|em|rem/gi;
         var bodyMarginLeft = Number(bodyStyle.marginLeft.replace(styleUnitReg, ''));

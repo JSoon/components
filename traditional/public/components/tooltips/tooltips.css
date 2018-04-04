@@ -7,9 +7,35 @@
 .tooltips {
   position: absolute;
   display: none;
-  max-width: 20em;
-  padding: 2px;
-  background-color: #4caf50;
   color: #fff; }
+  .tooltips.top .tooltips-arrow {
+    border-left-color: transparent;
+    border-right-color: transparent;
+    border-bottom-color: transparent; }
+  .tooltips.right .tooltips-arrow {
+    border-left-color: transparent;
+    border-top-color: transparent;
+    border-bottom-color: transparent; }
+  .tooltips.bottom .tooltips-arrow {
+    border-left-color: transparent;
+    border-right-color: transparent;
+    border-top-color: transparent; }
+  .tooltips.left .tooltips-arrow {
+    border-right-color: transparent;
+    border-top-color: transparent;
+    border-bottom-color: transparent; }
+  .tooltips .tooltips-content {
+    box-sizing: content-box;
+    max-width: 12em;
+    max-height: 4.6em;
+    overflow: hidden;
+    padding: .2em;
+    line-height: 1.4em;
+    background-color: #4caf50; }
+  .tooltips .tooltips-arrow {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border: 5px solid #4caf50; }
 
 /*# sourceMappingURL=tooltips.css.map */

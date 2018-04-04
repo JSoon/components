@@ -8,8 +8,40 @@ $base-color: #4caf50;
 .tooltips {
     position: absolute;
     display: none;
-    max-width: 20em;
-    padding: 2px;
-    background-color: $base-color;
     color: #fff;
+    &.top .tooltips-arrow {
+        border-left-color: transparent;
+        border-right-color: transparent;
+        border-bottom-color: transparent;
+    }
+    &.right .tooltips-arrow {
+        border-left-color: transparent;
+        border-top-color: transparent;
+        border-bottom-color: transparent;
+    }
+    &.bottom .tooltips-arrow {
+        border-left-color: transparent;
+        border-right-color: transparent;
+        border-top-color: transparent;
+    }
+    &.left .tooltips-arrow {
+        border-right-color: transparent;
+        border-top-color: transparent;
+        border-bottom-color: transparent;
+    }
+    .tooltips-content {
+        box-sizing: content-box;
+        max-width: 12em;
+        max-height: 1.4em * 3 + .4em;
+        overflow: hidden;
+        padding: .2em;
+        line-height: 1.4em;
+        background-color: $base-color;
+    }
+    .tooltips-arrow {
+        position: absolute;
+        width: 0;
+        height: 0;
+        border: 5px solid $base-color;
+    }
 }
