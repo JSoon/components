@@ -1,0 +1,20 @@
+//- 选项卡导航
+link(rel="stylesheet", href="/components/tabs/tabs.css")    
+script(src="/components/tabs/tabs.js")
+h2 tabs
+section
+    nav#J_ComTabs.tabs-nav
+        a(
+            href = '#tab1'
+            class = 'active'
+        ) tab1
+        a(href = '#tab2') tab2
+        a(href = '#tab3') tab3
+    .tabs-content
+        #tab1 tab1
+        #tab2 tab2 
+        #tab3 tab3
+script.
+    com_tabs({
+        id: 'J_ComTabs'
+    });

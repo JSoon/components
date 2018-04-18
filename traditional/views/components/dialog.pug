@@ -1,0 +1,38 @@
+//- 对话框
+link(rel="stylesheet", href="/components/dialog/dialog.css")
+link(rel="stylesheet", href="/components/dialog/toast.css")
+script(src="/components/dialog/dialog.pug.js")
+script(src="/components/dialog/confirm.pug.js")
+script(src="/components/dialog/toast.pug.js")
+script(src="/components/dialog/dialog.js")
+h2 toast
+button#J_ComToast toast
+h2 dialog
+button#J_ComDialog dialog
+h2 confirm
+button#J_ComConfirm confirm
+script.
+    $('#J_ComToast').click(function() {
+        com_dialog().toast('我是一条简单信息提示', 2000);
+    });
+    $('#J_ComDialog').click(function() {
+        com_dialog().normal({
+            //- title: '对话框',
+            //- width: 800,
+            //- height: 600,
+            //- overlay: false
+            body: '<p>我是一个普通对话框</p>',
+        });
+    });
+    $('#J_ComConfirm').click(function() {
+        com_dialog().confirm({
+            //- title: '对话框',
+            //- width: 800,
+            //- height: 600,
+            //- overlay: false
+            body: '<p>我是一个确认对话框</p>',
+            onConfirm: function(dialog) {
+                console.log(dialog);
+            }
+        });
+    });

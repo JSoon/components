@@ -6,88 +6,16 @@ block content
     //- script(src="/javascripts/indexa-c836f288bd16f3452393.js")
 
     //- 对话框
-    link(rel="stylesheet", href="/components/dialog/dialog.css")
-    link(rel="stylesheet", href="/components/dialog/toast.css")
-    script(src="/components/dialog/dialog.pug.js")
-    script(src="/components/dialog/confirm.pug.js")
-    script(src="/components/dialog/toast.pug.js")
-    script(src="/components/dialog/dialog.js")
-    h2 toast
-    button#J_ComToast toast
-    h2 dialog
-    button#J_ComDialog dialog
-    h2 confirm
-    button#J_ComConfirm confirm
-    script.
-        $('#J_ComToast').click(function() {
-            com_dialog().toast('我是一条简单信息提示', 2000);
-        });
-        $('#J_ComDialog').click(function() {
-            com_dialog().normal({
-                //- title: '对话框',
-                //- width: 800,
-                //- height: 600,
-                //- overlay: false
-                body: '<p>我是一个普通对话框</p>',
-            });
-        });
-        $('#J_ComConfirm').click(function() {
-            com_dialog().confirm({
-                //- title: '对话框',
-                //- width: 800,
-                //- height: 600,
-                //- overlay: false
-                body: '<p>我是一个确认对话框</p>',
-                onConfirm: function(dialog) {
-                    console.log(dialog);
-                }
-            });
-        });
+    include components/dialog.pug
 
     //- 选项卡导航
-    link(rel="stylesheet", href="/components/tabs/tabs.css")    
-    script(src="/components/tabs/tabs.js")
-    h2 tabs
-    section
-        nav#J_ComTabs.tabs-nav
-            a(
-                href = '#tab1'
-                class = 'active'
-            ) tab1
-            a(href = '#tab2') tab2
-            a(href = '#tab3') tab3
-        .tabs-content
-            #tab1 tab1
-            #tab2 tab2 
-            #tab3 tab3
-    script.
-        com_tabs({
-            id: 'J_ComTabs'
-        });
+    include components/tabs.pug
 
     //- 分页器
-    link(rel="stylesheet", href="/components/pagination/pagination.css")    
-    script(src="/components/pagination/pagination.js")
-    h2 pagination
-    #J_ComPagination.pagination
-    script.
-        com_pagination({
-            id: 'J_ComPagination',
-            total: 5
-        });
+    include components/pagination.pug
 
     //- tooltips
-    link(rel="stylesheet", href="/components/tooltips/tooltips.css")    
-    script(src="/components/tooltips/tooltips.pug.js")
-    script(src="/components/tooltips/tooltips.js")
-    h2 tooltips
-    #J_Tooltips(
-        title = '么么哒么么哒么么哒么么哒么么哒么么哒么么哒么么哒么么哒么么哒么么哒么么哒'
-        data-placement = 'top'
-        style = 'height: 200px; background: #eee;'
-    ) 呵呵哒
-    script.
-        com_tooltips({
-            selector: '#J_Tooltips',
-            //- follow: true
-        });
+    include components/tooltips.pug
+
+    //- 日期时间选择器
+    include components/datetimepicker.pug
