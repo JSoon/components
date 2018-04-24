@@ -31,7 +31,7 @@
         // root[globalName] = factory(root.b);
         root[globalName] = factory();
     }
-}(typeof self !== 'undefined' ? self : this, function (b) {
+}(typeof self !== 'undefined' ? self : this, function () {
 
     /**
      * 分页器
@@ -90,7 +90,7 @@
         function init() {
             // 如果是页码分页器
             if (!noPage) {
-                pageArray = initPageArray(current, total);
+                pageArray = initPageArray(current, total, pageRound);
                 renderPagination(pageArray);
             }
             // 如果是非页码分页器
@@ -110,12 +110,19 @@
             var isActive = $(this).hasClass('on'); // 当前处于激活状态的页码
             var curNumber = parseInt($(this).attr('data-pn')); // 当前页码号
 
+            /**
+             * 不可点击情况：
+             * 1. 点击的页码为当前页码
+             * 2. 点击的是省略号
+             * 3. 当前为第一页时的上一页按钮
+             * 4. 当前为最后一页时的下一页按钮
+             */
             if (isActive || !curNumber) {
                 return;
             }
 
             if (!noPage) {
-                pageArray = initPageArray(curNumber, total);
+                pageArray = initPageArray(curNumber, total, pageRound);
             } else {
                 pageArray = initNoPageArray(curNumber);
             }
@@ -131,7 +138,7 @@
         /**
          * 生成只有上一页和下一页的数组
          * @param {number} current 当前页码
-         * return {array}           分页器数组   
+         * return {array}          分页器数组   
          */
         function initNoPageArray(current) {
             var prev,
@@ -163,7 +170,7 @@
          * @param {number} round    页码半径，即当前页码前/后能显示的最大页码数量
          * return {array}           分页器数组                  
          */
-        function initPageArray(current, total, round) {
+        function initPageArray(current, total, pageRound) {
 
             var pagePart1 = []; // 当前分页器数组的左半截
             var pagePart2 = []; // 当前分页器数组的右半截
@@ -195,29 +202,31 @@
                     active: false
                 });
             }
-            // 若当前页不是最后一页，则生成最后一页；同时生成下一页按钮
+            // 若当前页不是最后一页，则生成最后一页
             if (roundRight !== 0) {
                 pagePart2.push({
                     pageNo: total,
                     active: false
                 });
-                pagePart2.push({
-                    nextPageNo: current + 1,
-                    next: true
-                });
             }
+            // 始终生成下一页按钮
+            pagePart2.push({
+                nextPageNo: current + 1,
+                next: true
+            });
 
             // 判断当前页码左半径范围，例如：
             // 若当前页码至第一页还有至少3页的距离，则生成前两个页码
             // 若大于3，则还要加上省略号，若等于3，则不加
             // 最后生成第一页的页码
             var roundLeft = current - 1;
-            // 若当前页不是第一页，则生成第一页；同时生成上一页按钮
+            // 始终生成上一页按钮
+            pagePart1.push({
+                prevPageNo: current - 1,
+                prev: true
+            });
+            // 若当前页不是第一页，则生成第一页
             if (roundLeft !== 0) {
-                pagePart1.push({
-                    prevPageNo: current - 1,
-                    prev: true
-                });
                 pagePart1.push({
                     pageNo: 1,
                     active: false
@@ -231,9 +240,9 @@
                         ellipsis: true
                     });
                 }
-                for (var i = pageRound; i > 0; i -= 1) {
+                for (var j = pageRound; j > 0; j -= 1) {
                     pagePart1.push({
-                        pageNo: current - i,
+                        pageNo: current - j,
                         active: false
                     });
                 }
@@ -261,30 +270,11 @@
          * @param {array|json} pageArray 
          */
         function renderPagination(pageArray) {
-            var html = ''; // 分页器html字符串
-            for (var i = 0; i < pageArray.length; i += 1) {
-                // 生成上一页按钮
-                if (pageArray[i].prev) {
-                    html += '<li data-pn="' + pageArray[i].prevPageNo + '"><a class="prev" href="#">' + (opts.prevText || '&lt;') + '</a></li>';
-                }
-                // 生成页码
-                if (typeof pageArray[i].pageNo === 'number') {
-                    if (!pageArray[i].active) {
-                        html += '<li data-pn="' + pageArray[i].pageNo + '"><a href="#">' + pageArray[i].pageNo + '</a></li>';
-                    } else {
-                        html += '<li class="active" data-pn="' + pageArray[i].pageNo + '"><span class="current">' + pageArray[i].pageNo + '</span></li>';
-                    }
-                }
-                // 生成省略号
-                else if (pageArray[i].ellipsis) {
-                    html += '<li class="disabled"><span class="ellipse">...</span></li>';
-                }
-                // 生成下一页按钮
-                if (pageArray[i].next) {
-                    html += '<li data-pn="' + pageArray[i].nextPageNo + '"><a class="next" href="#">' + (opts.nextText || '&gt;') + '</a></li>';
-                }
-            }
-            pager.innerHTML = '<ul>' + html + '</ul>';
+            var tmpl = typeof window.paginationTemplate !== 'undefined' ? window.paginationTemplate : require('./pagination.pug');
+            pager.innerHTML = tmpl({
+                pageArray: pageArray,
+                opts: opts
+            });
         }
     }
 

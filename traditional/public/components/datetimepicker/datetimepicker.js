@@ -14,7 +14,7 @@
     if (typeof define === 'function' && define.amd) {
         // AMD. Register as an anonymous module.
         // Defines a module "amdWebGlobal" that depends another module called "b".
-        define(['layui-laydate'], function (laydate) {
+        define(['./laydate'], function (laydate) {
             // Also create a global in case some scripts
             // that are loaded still are looking for
             // a global even when an AMD loader is in use.

@@ -1,4 +1,5 @@
 //- 日期时间选择器
+script(src="/components/datetimepicker/laydate/laydate.js")
 script(src="/components/datetimepicker/datetimepicker.js")
 h2 datetimepicker
 input#J_Datetimepicker(type="text")
@@ -7,6 +8,7 @@ script.
         elem: '#J_Datetimepicker',
         theme: '#4caf50',
         type: 'month',
+        //- calendar: true,
         //- range: true,
         done: function (value, date, endDate) {
             console.log(value); //得到日期生成的值，如：2017-08-18

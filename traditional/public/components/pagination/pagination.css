@@ -26,22 +26,19 @@
     line-height: 40px;
     text-align: center;
     font-size: 16px; }
-  .pagination a {
+  .pagination a,
+  .pagination span {
     display: block;
-    color: #666;
-    padding: 0 1em; }
+    min-width: 42px;
+    text-align: center; }
+  .pagination a {
+    color: #666; }
     .pagination a:hover, .pagination a:focus {
       color: #fff;
       background-color: #4caf50 !important; }
-    .pagination a.next, .pagination a.prev {
-      width: 40px;
-      padding: 0; }
   .pagination span {
-    display: block;
-    color: #bbb;
-    padding: 0 1em; }
+    color: #bbb; }
     .pagination span.current {
-      display: block;
       color: #fff;
       background-color: #4caf50; }
 

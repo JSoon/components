@@ -1,10 +1,15 @@
 //- 分页器
 link(rel="stylesheet", href="/components/pagination/pagination.css")    
+script(src="/components/pagination/pagination.pug.js")
 script(src="/components/pagination/pagination.js")
 h2 pagination
 #J_ComPagination.pagination
 script.
     com_pagination({
         id: 'J_ComPagination',
-        total: 5
+        total: 8,
+        current: 2,
+        onPageClick: function(page, e) {
+            console.log(page);
+        }
     });

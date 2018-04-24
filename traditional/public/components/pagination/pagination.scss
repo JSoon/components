@@ -29,22 +29,28 @@ $base-color: #4caf50;
         line-height: 40px;
         text-align: center;
         font-size: 16px;
+        &.disabled {
+            // 隐藏上一页&下一页按钮
+        }
+    }
+    a,
+    span {
+        display: block;
+        min-width: 42px;
+        text-align: center;
     }
     a {
-        // 页码
-        display: block;
+        // 可点击页码
         color: #666;
-        padding: 0 1em;
         &:hover,
         &:focus {
             color: #fff;
             background-color: $base-color !important;
-        }
-        &.next,
-        &.prev {
-            width: 40px;
-            padding: 0; // text-indent: -9999em;
-        } // &.next {
+        } // &.next,
+        // &.prev {
+        //     text-indent: -9999em;
+        // }
+        // &.next {
         //     background: url(../../images/pager-next-normal.png) no-repeat transparent center center;
         //     &:hover,
         //     &:focus {
@@ -60,11 +66,9 @@ $base-color: #4caf50;
         // }
     }
     span {
-        display: block;
+        // 不可点击页码
         color: #bbb;
-        padding: 0 1em;
         &.current {
-            display: block;
             color: #fff;
             background-color: $base-color;
         }

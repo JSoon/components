@@ -1,0 +1,54 @@
+//- 分页器模板
+if pageArray && pageArray.length
+    ul
+        each page, index in pageArray
+            //- 生成上一页按钮，如果已经是第一页（即上页按钮的页码 < 第一页的页码），则隐藏该按钮
+            if page.prev
+                - var firstPage = 1;
+                if page.prevPageNo < firstPage
+                    li.disabled
+                        span.prev(
+                            title = opts.prevText || "上一页"
+                        )= opts.prevText || "<"
+                else
+                    li(
+                        data-pn = page.prevPageNo
+                    )
+                        a.prev(
+                            href = "#"
+                            title = opts.prevText || "上一页"
+                        )= opts.prevText || "<"
+            //- 生成页码
+            if typeof page.pageNo === "number"
+                if !page.active
+                    li(
+                        data-pn = page.pageNo
+                    )
+                        a(
+                            href = "#"
+                        ) #{page.pageNo}
+                else
+                    li.active(
+                        data-pn = page.pageNo
+                    )
+                        span.current #{page.pageNo}
+            //- 生成省略号
+            else if page.ellipsis
+                li.disabled
+                    span.ellipse ...
+            //- 生成下一页按钮，如果已经是最后一页（即下页按钮的页码 > 最后一页的页码），则隐藏该按钮
+            if page.next
+                - var lastPage = pageArray[pageArray.length - 2].pageNo;
+                if page.nextPageNo > lastPage
+                    li.disabled
+                        span.next(
+                            title = opts.nextText || "下一页"                            
+                        )= opts.nextText || ">"
+                else
+                    li(
+                        data-pn = page.nextPageNo
+                    )
+                        a.next(
+                            href = "#"
+                            title = opts.nextText || "下一页"                            
+                        )= opts.nextText || ">"
