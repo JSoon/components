@@ -1,5 +1,8 @@
 /**
- * 计算元素相对于body边界的位置
+ * 计算元素相对于文档body边界的位置
+ * 
+ * 不适用范围：
+ * 1. 元素相对于其非body父元素的位置
  * 
  * @author J.Soon <serdeemail@gmail.com>
  */
@@ -24,7 +27,7 @@
         // root[globalName] = factory(root.b);
         root[globalName] = factory();
     }
-}(typeof self !== 'undefined' ? self : this, function (b) {
+}(typeof self !== 'undefined' ? self : this, function () {
 
     /**
      * 计算元素相对于body边界的位置
@@ -36,8 +39,8 @@
         var docRoot = document.documentElement || document.body.parentNode; // 文档根节点，对于html文档来说，则是<html>元素
         // https://developer.mozilla.org/en-US/docs/Web/API/Element/clientWidth
         // https://developer.mozilla.org/en-US/docs/Web/API/Element/clientHeight
-        var docWidth = docRoot.clientWidth; // html文档可视区域宽度
-        var docHeight = docRoot.clientHeight; // html文档可视区域高度
+        // var docWidth = docRoot.clientWidth; // html文档可视区域宽度
+        // var docHeight = docRoot.clientHeight; // html文档可视区域高度
         var body = document.body;
         // https://developer.mozilla.org/en-US/docs/Web/API/Element/currentStyle
         // https://developer.mozilla.org/en-US/docs/Web/API/Window/getComputedStyle
@@ -54,18 +57,19 @@
 
         // https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect
         var bounding = element.getBoundingClientRect();
+        // https://developer.mozilla.org/en-US/docs/Web/API/Window/scrollX
         var scrollX = (window.pageXOffset !== undefined) ? window.pageXOffset : docRoot.scrollLeft; // 文档水平方向滚动距离
         var scrollY = (window.pageYOffset !== undefined) ? window.pageYOffset : docRoot.scrollTop; // 文档垂直方向滚动距离
-        var offsetLeft = bounding.left + scrollX; // 目标元素相对文档左边界距离
-        var offsetTop = bounding.top + scrollY; // 目标元素相对文档上边界距离
-        var offsetRight = bodyWidth - offsetLeft - width; // 目标元素相对文档右边界距离
-        var offsetBottom = bodyHeight - offsetTop - height; // 目标元素相对文档下边界距离
+        var offsetLeft = bounding.left + scrollX; // 目标元素相对文档body左边界距离
+        var offsetTop = bounding.top + scrollY; // 目标元素相对文档body上边界距离
+        var offsetRight = bodyWidth - offsetLeft - width; // 目标元素相对文档body右边界距离
+        var offsetBottom = bodyHeight - offsetTop - height; // 目标元素相对文档body下边界距离
 
         return {
-            left: offsetLeft, // 元素相对文档左边距
-            top: offsetTop, // 元素相对文档上边距
-            right: offsetRight, // 元素相对文档右边距
-            bottom: offsetBottom, // 元素相对文档下边距
+            left: offsetLeft, // 元素相对文档body左边距
+            top: offsetTop, // 元素相对文档body上边距
+            right: offsetRight, // 元素相对文档body右边距
+            bottom: offsetBottom, // 元素相对文档body下边距
             width: width, // 元素宽度
             height: height // 元素高度
         }

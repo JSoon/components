@@ -42,16 +42,15 @@
 
         // 遍历目标元素，生成小提示
         $ele.each(function (index, element) {
-            // 计算元素相对于body边界的位置
-            var boundary = getElementBoundary(element);
-            // console.log(element);
-            // console.log(boundary);
             var content = $ele.attr('title') || opts.content || '';
             var placement = $ele.attr('data-placement') || opts.placement || 'top';
             var className = opts.className || '';
             var follow = opts.follow === true ? true : false;
             var $tips;
             $(element).on('mouseenter', function (e) {
+                if (!content) {
+                    return;
+                }
                 // 加载前端模板
                 // tooltipsTemplate为预编译后的模板函数，若没有，则采用AMD的方式进行装载（需要使用AMD加载器或者使用webpack）
                 var tmpl = typeof window.tooltipsTemplate !== 'undefined' ? window.tooltipsTemplate : require('./tooltips.pug');
@@ -60,17 +59,19 @@
                     content: content,
                     className: className + ' ' + placement
                 }));
-                if (content) {
-                    $body.append($tips);
-                    adjustCoords({
-                        event: e,
-                        tips: $tips,
-                        boundary: boundary,
-                        placement: placement,
-                        follow: follow
-                    });
-                    $tips.show();
-                }
+                $body.append($tips);
+                // 计算元素相对于body边界的位置
+                var boundary = getElementBoundary(element);
+                // console.log(element);
+                // console.log(boundary);
+                adjustCoords({
+                    event: e,
+                    tips: $tips,
+                    boundary: boundary,
+                    placement: placement,
+                    follow: follow
+                });
+                $tips.show();
             });
             $(element).on('mouseleave', function () {
                 $tips.remove();
