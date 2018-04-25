@@ -27,6 +27,9 @@
     }
 }(typeof self !== 'undefined' ? self : this, function (getElementBoundary) {
 
+    var t; // window scroll事件延迟定时器
+    var scrollHandler; // window scroll事件句柄的引用，用于防止多次绑定
+
     /**
      * 图片懒加载
      * @param {object} opts 
@@ -37,7 +40,8 @@
         opts = opts || {};
         var attr = opts.attr || 'data-src';
         var delay = opts.delay || 600;
-        var $images = $('img[' + attr + ']');
+        var selector = 'img[' + attr + ']';
+        var $images = $(selector);
 
         // 可视区域图片加载
         var loadImage = function () {
@@ -48,7 +52,7 @@
             $images.each(function (index, image) {
                 var boundary = getElementBoundary(image);
                 var loaded = image.hasAttribute('data-loaded'); // 是否已经加载（仅代表图片src已经赋值，并不代表图片成功加载）
-                var dataSrc = image.getAttribute('data-src'); // 图片真实src地址
+                var dataSrc = image.getAttribute(attr); // 图片真实src地址
 
                 // 若图片已加载或者缺少图片真实src地址，则不进行图片加载
                 if (loaded || !dataSrc) {
@@ -69,18 +73,19 @@
         // 首屏图片优先加载
         loadImage();
 
-        // 滚动条滚动事件处理句柄
-        var scrollHandler = function () {
-            var t;
-            return function () {
-                clearTimeout(t);
-                t = setTimeout(function () {
-                    loadImage();
-                }, delay);
-            }
+        // 移除之前的scroll事件句柄，防止重复绑定
+        $(window).off('scroll', scrollHandler);
+
+        // 滚动条scroll事件处理句柄
+        scrollHandler = function () {
+            clearTimeout(t);
+            t = setTimeout(function () {
+                loadImage();
+            }, delay);
         };
 
-        $(window).on('scroll', scrollHandler());
+        // 绑定新的scroll事件句柄
+        $(window).on('scroll', scrollHandler);
     }
 
     return lazyImage;
