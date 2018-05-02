@@ -1,4 +1,8 @@
 //- 分页器模板
+-
+    var pageArray = locals.pageArray;
+    var opts = locals.opts;
+    
 if pageArray && pageArray.length
     ul
         each page, index in pageArray

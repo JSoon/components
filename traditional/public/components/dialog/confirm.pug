@@ -1,14 +1,14 @@
 //- 确认对话框
 div.dialog-overlay
     div.dialog.confirm(
-        class = className
+        class = locals.className
     )
         div.dialog-header
-            span.dialog-title= title || '确认框'
+            span.dialog-title= locals.title || '确认框'
             i.dialog-close.J_DialogClose 关闭
-        if body
+        if locals.body
             div.dialog-body
-                != body
+                != locals.body
         div.dialog-footer
             button.J_DialogConfirm 确定
             button.J_DialogClose 取消

@@ -195,7 +195,7 @@
             $('body').append($html);
 
             // 设置内容消失时间
-            var duration = duration || 2000;
+            duration = duration || 2000;
             setTimeout(function () {
                 var duration = 200; // 移除对话框时间，与移除动画持续时间相同
                 $html.addClass('removing'); // 添加移除中动画

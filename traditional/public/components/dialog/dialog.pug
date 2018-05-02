@@ -1,14 +1,14 @@
 //- 普通对话框
 div.dialog-overlay
     div.dialog.normal(
-        class = className
+        class = locals.className
     )
         div.dialog-header
-            span.dialog-title= title || '对话框'
+            span.dialog-title= locals.title || '对话框'
             i.dialog-close.J_DialogClose 关闭
-        if body
+        if locals.body
             div.dialog-body
-                != body
-        if footer
+                != locals.body
+        if locals.footer
             div.dialog-footer
-                != footer
+                != locals.footer
