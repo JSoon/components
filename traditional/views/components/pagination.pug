@@ -10,6 +10,11 @@ script.
         total: 8,
         current: 2,
         onPageClick: function(page, e) {
+            var $deferred = $.Deferred();
             console.log(page);
+            return true;
+            //- $deferred.resolve(true);
+            //- $deferred.reject();
+            //- return $deferred.promise();
         }
     });

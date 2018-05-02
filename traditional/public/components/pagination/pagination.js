@@ -47,8 +47,9 @@
      */
     /**
      * opts.onPageClick
-     * @param {number} pageNumber   当前点击的页码
-     * @param {object} event        jQuery event
+     * @param   {number}    pageNumber  当前点击的页码
+     * @param   {object}    event       jQuery event
+     * @return  {boolean|promise}       true, false或者promise对象，从而决定是否渲染当前点击页码
      */
     function pagination(opts) {
         var that = {};
@@ -109,6 +110,7 @@
 
             var isActive = $(this).hasClass('on'); // 当前处于激活状态的页码
             var curNumber = parseInt($(this).attr('data-pn')); // 当前页码号
+            var shouldTurn = true; // 是否应该翻页（即切换页码，由onPageClick回调返回值决定，默认true）
 
             /**
              * 不可点击情况：
@@ -128,9 +130,26 @@
             }
 
             // 页码点击时触发的回调函数
-            typeof opts.onPageClick === 'function' && opts.onPageClick(curNumber, e);
-
-            renderPagination(pageArray);
+            if (typeof opts.onPageClick === 'function') {
+                shouldTurn = opts.onPageClick(curNumber, e) || shouldTurn;
+                // 若onPageClick返回一个promise对象，则进行异步渲染
+                if (typeof shouldTurn.then === 'function') {
+                    shouldTurn.then(function (response) {
+                        // promise resolved
+                        if (response) {
+                            renderPagination(pageArray);
+                        }
+                    }, function () {
+                        // promise failed
+                    });
+                }
+                // 若onPageClick为同步执行函数，则进行同步渲染
+                else {
+                    if (shouldTurn) {
+                        renderPagination(pageArray);
+                    }
+                }
+            }
         });
 
         that.initNoPageArray = initNoPageArray;
