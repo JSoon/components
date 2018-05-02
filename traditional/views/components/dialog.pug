@@ -7,16 +7,30 @@ script(src="/components/dialog/toast.pug.js")
 script(src="/components/dialog/dialog.js")
 h2 toast
 button#J_ComToast toast
+h2 loading
+button#J_ComLoading loading
 h2 dialog
 button#J_ComDialog dialog
 h2 confirm
 button#J_ComConfirm confirm
 script.
+    var com_dialog = com_dialog();
+    var com_dialog_loading;
+
     $('#J_ComToast').click(function() {
-        com_dialog().toast('我是一条简单信息提示', 2000);
+        com_dialog.toast({
+            content: '我是一条简单信息提示',
+            duration: 2000
+        });
+    });
+    $('#J_ComLoading').click(function() {
+        com_dialog_loading = com_dialog.loading({
+            content: '<img src="/components/dialog/loading.svg" style="vertical-align: middle; width: 16px; margin-top: -4px;"> 加载中，请稍候',
+            duration: 5000
+        });
     });
     $('#J_ComDialog').click(function() {
-        com_dialog().normal({
+        com_dialog.normal({
             //- title: '对话框',
             //- width: 800,
             //- height: 600,
@@ -25,7 +39,7 @@ script.
         });
     });
     $('#J_ComConfirm').click(function() {
-        com_dialog().confirm({
+        com_dialog.confirm({
             //- title: '对话框',
             //- width: 800,
             //- height: 600,

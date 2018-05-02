@@ -12,6 +12,7 @@ $base-color: #4caf50;
     right: 0;
     bottom: 0;
     left: 0;
+    background: rgba(0, 0, 0, .3); // filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#7F000000, endColorstr=#7F000000);    
     text-align: center;
     -webkit-transition: opacity .2s;
     transition: opacity .2s;
