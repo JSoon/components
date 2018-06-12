@@ -108,7 +108,7 @@
         $(pager).on('click', 'li', function (e) {
             e.preventDefault();
 
-            var isActive = $(this).hasClass('on'); // 当前处于激活状态的页码
+            var isActive = $(this).hasClass('active'); // 当前处于激活状态的页码
             var curNumber = parseInt($(this).attr('data-pn')); // 当前页码号
             var shouldTurn = true; // 是否应该翻页（即切换页码，由onPageClick回调返回值决定，默认true）
 
