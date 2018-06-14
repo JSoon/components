@@ -7,6 +7,7 @@
     "build": "webpack --config webpack.config.js --colors --progress --watch"
   },
   "dependencies": {
+    "fine-uploader": "^5.16.2",
     "jquery": "^1.12.4",
     "layui-laydate": "^5.0.9"
   },

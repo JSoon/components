@@ -1,0 +1,68 @@
+//- 文件上传
+link(rel="stylesheet", href="/components/uploader/fine-uploader/fine-uploader.css")
+script(src="/components/uploader/fine-uploader/fine-uploader.js")
+script(src="/components/uploader/uploader.js")
+h2 uploader
+button#J_ComUploadButton 上传文件
+div#J_ComUploader.uploader
+
+script.
+    var uploaderOpts = {
+        elementId: 'J_ComUploader',
+        templateId: 'J_ComUploaderTemplate',
+        button: document.getElementById('J_ComUploadButton'),
+        debug: true,
+        request: {
+            endpoint: '/upload',
+            params: {
+            }
+        },
+        autoUpload: true,
+        multiple: false, // 不允许一次性选择多个文件上传
+        maxSize: '1MB', // 如果超过最大限制，就以此为提示中的最大大小
+        // 前端验证
+        validation: {
+            allowedExtensions: ['jpg', 'jpeg', 'png', 'bmp'],
+            // 以下配置项仅对支持FileReader的现代浏览器有效
+            sizeLimit: 1 * 1024 * 1024, // 200MB = 200 * 1024 * 1024 bytes
+            image: {
+                minWidth: 300,
+                minHeight: 300,
+                maxWidth: 800,
+                maxHeight: 800
+            }
+        },
+        callbacks: {
+            onValidate: function (data) {
+                console.log('onValidate');
+            },
+            onStatusChange: function (id, oldStatus, newStatus) {
+                console.log('onStatusChange', newStatus);
+            },
+            // 文件被选中并且等待上传时触发
+            onSubmit: function (id, fileName) {
+                console.log('onSubmit', fileName);
+            },
+            // 文件上传进度
+            onProgress: function (id, fileName, loaded, total) {
+                // 更新上传进度
+                console.log('onProgress', loaded / total * 100 + '%');
+            },
+            // 当上传结束时触发（无论成功失败）
+            onComplete: function (id, fileName, response) {
+                console.log('onComplete');
+            },
+            onAllComplete: function (succeeded, failed) {
+                console.log('onAllComplete');
+            },
+            onError: function (id, name, errorReason, xhrOrXdr) {
+                console.log('onError', name, errorReason);
+            }
+        }
+    };
+    var com_uploader = com_uploader(uploaderOpts);
+
+
+
+
+
