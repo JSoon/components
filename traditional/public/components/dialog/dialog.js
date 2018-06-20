@@ -251,11 +251,12 @@
             // 若toast持续时间不为-1，则在duration毫秒后消失
             if (duration !== -1) {
                 setTimeout(function () {
-                    var duration = 200; // 移除对话框时间，与移除动画持续时间相同
-                    $html.addClass(ANIMATE_HIDE); // 添加移除中动画
-                    setTimeout(function () {
-                        $html.remove();
-                    }, duration);
+                    // var duration = 200; // 移除对话框时间，与移除动画持续时间相同
+                    // $html.addClass(ANIMATE_HIDE); // 添加移除中动画
+                    // setTimeout(function () {
+                    //     $html.remove();
+                    // }, duration);
+                    destroy();
                 }, duration);
             }
             // 若为-1，则永远不消失，直到手动调用destroyDialog方法
