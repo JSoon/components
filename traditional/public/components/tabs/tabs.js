@@ -85,12 +85,19 @@
         tabNav.on('click', 'a', function (e) {
             e.preventDefault();
             var tab = $(this);
-            links.removeClass('active'); // 清除所有选项卡高亮
-            tab.addClass('active'); // 给当前点击的选项卡添加高亮
             var contentId = tab.attr('href');
-            $(contentId).show().siblings().hide();
+
             // 选项卡切换回调函数，参数为当前显示的内容容器
             typeof opts.onTabClick === 'function' && opts.onTabClick(tab, $(contentId));
+
+            // 若当前选项卡为禁用状态，则不进行切换
+            if (tab.hasClass('disabled')) {
+                return;
+            }
+
+            links.removeClass('active'); // 清除所有选项卡高亮
+            tab.addClass('active'); // 给当前点击的选项卡添加高亮
+            $(contentId).show().siblings().hide();
         });
     }
 

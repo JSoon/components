@@ -99,11 +99,11 @@
             //#endregion
 
             // 创建对话框回调函数
-            typeof opts.onCreate === 'function' && opts.onCreate($html);
+            typeof opts.onCreate === 'function' && opts.onCreate($html, dialog);
 
             // 点击关闭按钮或者对话框之外的overlay遮罩部分，销毁对话框
             $html.on('click', function (e) {
-                if (e.target.getAttribute('class').indexOf('J_DialogClose') !== -1) {
+                if (e.target.getAttribute('class') && e.target.getAttribute('class').indexOf('J_DialogClose') !== -1) {
                     destroy();
                 }
                 if (opts.overlay && e.currentTarget === e.target) {
@@ -119,7 +119,7 @@
                     return dialog;
                 }
                 // 销毁对话框回调函数
-                typeof opts.onRemove === 'function' && opts.onRemove($html);
+                typeof opts.onRemove === 'function' && opts.onRemove($html, dialog);
                 destroyDialog($html, true);
                 dialog.html = null;
                 return dialog;
@@ -133,7 +133,7 @@
                     return dialog;
                 }
                 // 隐藏对话框回调函数
-                typeof opts.onClose === 'function' && opts.onClose($html);
+                typeof opts.onClose === 'function' && opts.onClose($html, dialog);
                 destroyDialog($html, false);
                 return dialog;
             }
@@ -146,7 +146,7 @@
                     return dialog;
                 }
                 // 显示对话框回调函数
-                typeof opts.onShow === 'function' && opts.onShow($html);
+                typeof opts.onShow === 'function' && opts.onShow($html, dialog);
                 $html.removeClass(ANIMATE_HIDE);
                 return dialog;
             }
@@ -243,7 +243,7 @@
             toast.html = $html;
 
             // 创建对话框回调函数
-            typeof opts.onCreate === 'function' && opts.onCreate($html);
+            typeof opts.onCreate === 'function' && opts.onCreate($html, toast);
 
             // 设置内容消失时间
             var duration = opts.duration || 2000;
@@ -272,7 +272,7 @@
                     return toast;
                 }
                 // 销毁对话框回调函数
-                typeof opts.onRemove === 'function' && opts.onRemove($html);
+                typeof opts.onRemove === 'function' && opts.onRemove($html, toast);
                 destroyDialog($html, true);
                 toast.html = null;
                 return toast;
@@ -286,7 +286,7 @@
                     return toast;
                 }
                 // 隐藏对话框回调函数
-                typeof opts.onClose === 'function' && opts.onClose($html);
+                typeof opts.onClose === 'function' && opts.onClose($html, toast);
                 destroyDialog($html, false);
                 return toast;
             }
@@ -299,7 +299,7 @@
                     return toast;
                 }
                 // 显示对话框回调函数
-                typeof opts.onShow === 'function' && opts.onShow($html);
+                typeof opts.onShow === 'function' && opts.onShow($html, toast);
                 $html.removeClass(ANIMATE_HIDE);
                 return toast;
             }
