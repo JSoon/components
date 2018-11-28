@@ -1,0 +1,19 @@
+//- ajax请求封装，防止多次触发请求
+script(src="/components/ajax/ajax.js")
+style.
+    .com_ajax_submitting {
+        border: 1px solid #ccc;
+        color: #ccc;
+    }
+h2 ajax请求
+button#J_Ajax ajax请求
+script.
+    $('#J_Ajax').on('click', function() {
+        com_ajax({
+            ajaxOpts: {
+                method: 'GET',
+                url: 'http://www.mtv.com/feeds/ent_m245/cc786454-bb64-430c-a313-7d3c521cda05'
+            },
+            btn: $(this)
+        });
+    });
