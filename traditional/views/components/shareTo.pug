@@ -1,0 +1,29 @@
+//- 分享到
+script(src="/components/shareTo/qrcodejs/qrcode.js")
+script(src="/components/shareTo/shareTo.js")
+style.
+    .com-share-to > a {
+        display: inline-block;
+        margin-right: 1em;
+    }
+h2 分享到
+div#J_ShareTo
+script.
+    com_shareTo({
+        selector: '#J_ShareTo',
+        //- trigger: 'hover',
+        url: 'http://www.baidu.com',
+        title: '分享标题',
+        desc: '分享内容描述',
+        pics: [
+            'http://www.17qq.com/img_qqtouxiang/82324846.jpeg',
+            'http://img.duoziwang.com/2017/07/251319837371.jpg'
+        ],
+        site: '网站名称',
+        qrcode: {
+            width: 256,
+            height: 256
+            //- useSVG: true
+        }
+    });
+    

@@ -25,7 +25,6 @@
     var AJAX_SUBMITTING = 'com_ajax_submitting';
 
     function ajax(options) {
-
         // 参数对象
         options = {
             ajaxOpts: options.ajaxOpts || {}, // jQuery ajax参数
@@ -34,12 +33,13 @@
             fail: options.fail || function () {}, // 失败回调函数
             always: options.always || function () {}, // 无论成功/失败回调函数
         };
-
+        
         // 防止重复提交
         if (options.btn) {
             if (options.btn.hasClass(AJAX_SUBMITTING)) {
                 return;
             }
+
             options.btn.addClass(AJAX_SUBMITTING);
         }
 
