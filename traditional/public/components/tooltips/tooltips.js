@@ -42,8 +42,8 @@
 
         // 遍历目标元素，生成小提示
         $ele.each(function (index, element) {
-            var content = $ele.attr('title') || opts.content || '';
-            var placement = $ele.attr('data-placement') || opts.placement || 'top';
+            var content = $(element).attr('title') || opts.content || '';
+            var placement = $(element).attr('data-placement') || opts.placement || 'top';
             var className = opts.className || '';
             var follow = opts.follow === true ? true : false;
             var $tips;
